@@ -29,5 +29,5 @@ Frontend draait standaard op `http://localhost:5173`.
 Zorg ervoor dat je een `.env` bestand hebt in de root van het project met daarin:
 
 ```env
-VITE_API_URL=https://jouw-backend-url.up.railway.app
+VITE_API_URL=https://ifc-backend-production.up.railway.app
 ```
