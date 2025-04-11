@@ -32,30 +32,26 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-4">
-      <h1 className="text-3xl font-bold mb-4">IFC Validator</h1>
-      <input type="file" onChange={handleFileChange} className="mb-4" />
-      <button
-        onClick={handleUpload}
-        disabled={uploading}
-        className="px-4 py-2 bg-blue-500 text-white rounded"
-      >
+    <div style={{ padding: '2rem', fontFamily: 'Arial, sans-serif' }}>
+      <h1>IFC Validator Dashboard</h1>
+      <input type="file" onChange={handleFileChange} />
+      <button onClick={handleUpload} disabled={uploading}>
         {uploading ? 'Uploading...' : 'Upload & Validate'}
       </button>
-      <div className="mt-8 w-full max-w-2xl">
+      <div style={{ marginTop: '2rem' }}>
         {errors.length > 0 && (
-          <table className="w-full border">
+          <table border="1" cellPadding="10">
             <thead>
               <tr>
-                <th className="border px-4 py-2">Type</th>
-                <th className="border px-4 py-2">Description</th>
+                <th>Type</th>
+                <th>Description</th>
               </tr>
             </thead>
             <tbody>
               {errors.map((err, idx) => (
                 <tr key={idx}>
-                  <td className="border px-4 py-2">{err.type}</td>
-                  <td className="border px-4 py-2">{err.description}</td>
+                  <td>{err.type}</td>
+                  <td>{err.description}</td>
                 </tr>
               ))}
             </tbody>
