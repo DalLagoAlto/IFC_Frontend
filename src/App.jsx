@@ -13,19 +13,26 @@ function App() {
   };
 
   const handleUpload = async () => {
-    if (!file) return;
+    if (!file) {
+      alert('No file selected.');
+      return;
+    }
     const formData = new FormData();
-    formData.append('file', file);
+    formData.append('file', file); // ✅ DE KEY 'file' klopt perfect
 
     try {
       setUploading(true);
       const response = await axios.post(`${API_URL}/upload`, formData, {
-        headers: { 'Content-Type': 'multipart/form-data' }
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+        withCredentials: false // 🔥 Extra toegevoegd voor Vercel ➔ Railway uploads
       });
+      console.log('Server Response:', response.data); // Extra log om beter te debuggen
       setErrors(response.data);
     } catch (error) {
-      console.error(error);
-      alert('Upload failed');
+      console.error('Upload error:', error);
+      alert('Upload failed: ' + (error.response?.data?.error || error.message));
     } finally {
       setUploading(false);
     }
